@@ -6,6 +6,10 @@ Created on 2017. 9. 27.
 
 import types
 
+class Singleton(object):
+    
+    def __init__(self): __builtins__['_' + self.__class__.__name__] = self
+    
 class Inventory(object):
     
     def __init__(self, root=None, parent=None):
@@ -14,17 +18,22 @@ class Inventory(object):
         if parent != None: self._inventory_parent = parent
         else: self._inventory_parent = self
         self._inventory_children = {}
-        elems = self.__class__.__dict__
-        for name, cls in elems.items():
-            if type(cls) in [types.TypeType, types.ClassType] and issubclass(cls, Inventory):
-                inst = cls()
-                Inventory.__init__(inst, self._inventory_root, self)
-                self.__setattr__(name, inst)
-                self._inventory_children[name] = inst
+        
+        import inspect
+        for mro in reversed(inspect.getmro(self.__class__)):
+            if mro == object or mro == Inventory: continue
+            elems = mro.__dict__
+            for name, cls in elems.items():
+                if type(cls) in [types.TypeType, types.ClassType] and issubclass(cls, Inventory):
+                    inst = cls()
+                    Inventory.__init__(inst, self._inventory_root, self)
+                    self.__setattr__(name, inst)
+                    self._inventory_children[name] = inst
     
     def __invert__(self): return self._inventory_root
     def __neg__(self): return self._inventory_parent
     def __pos__(self): return self._inventory_children
+
 
 class Cache(dict):
     

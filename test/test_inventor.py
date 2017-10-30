@@ -32,8 +32,13 @@ class Layer1(jzlib.Inventory):
         
         @property
         def get(self): return (-self).get, 'Layer2B'
+        
+class LayerWrap(Layer1):
+    
+    def __init__(self):
+        Layer1.__init__(self)
 
-l1 = Layer1()
+l1 = LayerWrap()
 
 print l1.Layer2A.get
 print l1.Layer2B.get
