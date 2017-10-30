@@ -4,5 +4,5 @@ Created on 2017. 9. 27.
 @author: HyechurnJang
 '''
 
-from archive import Singleton, Inventory, Cache
+from archive import setGlobals, Singleton, Inventory, Environment, Cache
 from library import LifeCycle, kill, modup, moddown

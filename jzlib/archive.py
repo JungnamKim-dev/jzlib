@@ -6,6 +6,9 @@ Created on 2017. 9. 27.
 
 import types
 
+def setGlobals(**kargs):
+    for k, v in kargs.items(): __builtins__[k] = v
+
 class Singleton(object):
     
     def __init__(self): __builtins__['_' + self.__class__.__name__] = self
@@ -34,6 +37,11 @@ class Inventory(object):
     def __neg__(self): return self._inventory_parent
     def __pos__(self): return self._inventory_children
 
+class Environment(Singleton, Inventory):
+    
+    def __init__(self):
+        Singleton.__init__(self)
+        Inventory.__init__(self)
 
 class Cache(dict):
     
