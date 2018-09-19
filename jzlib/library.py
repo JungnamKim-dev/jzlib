@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 '''
-Created on 2017. 10. 19.
-@author: HyechurnJang
+Created on 2018. 9. 19.
+@author: Hyechurn Jang, <hyjang@cisco.com>
 '''
 
 import os

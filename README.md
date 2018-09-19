@@ -1,2 +1,2 @@
 # jzlib
-HC's custom python libraries
+Jz code architect library

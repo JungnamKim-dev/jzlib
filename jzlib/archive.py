@@ -1,33 +1,29 @@
 # -*- coding: utf-8 -*-
 '''
-Created on 2017. 9. 27.
-@author: HyechurnJang
+Created on 2018. 9. 19.
+@author: Hyechurn Jang, <hyjang@cisco.com>
 '''
 
-import types
+from inspect import isclass, getmro
 
 def setGlobals(**kargs):
     for k, v in kargs.items(): __builtins__[k] = v
 
 class Singleton(object):
-    
     def __init__(self): __builtins__['_' + self.__class__.__name__] = self
     
 class Inventory(object):
-    
     def __init__(self, root=None, parent=None):
         if root != None: self._inventory_root = root
         else: self._inventory_root = self
         if parent != None: self._inventory_parent = parent
         else: self._inventory_parent = self
         self._inventory_children = {}
-        
-        import inspect
-        for mro in reversed(inspect.getmro(self.__class__)):
+        for mro in reversed(getmro(self.__class__)):
             if mro == object or mro == Inventory: continue
             elems = mro.__dict__
             for name, cls in elems.items():
-                if type(cls) in [types.TypeType, types.ClassType] and issubclass(cls, Inventory):
+                if isclass(cls) and issubclass(cls, Inventory):
                     inst = cls()
                     Inventory.__init__(inst, self._inventory_root, self)
                     self.__setattr__(name, inst)

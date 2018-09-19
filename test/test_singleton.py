@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 '''
-Created on 2017. 10. 30.
-@author: HyechurnJang
+Created on 2018. 9. 19.
+@author: Hyechurn Jang, <hyjang@cisco.com>
 '''
 
 from jzlib import Singleton
@@ -13,7 +13,7 @@ class StTest(Singleton):
         self.name = name
     
     def printName(self):
-        print self.name
+        print(self.name)
 
 class StWrap(StTest):
     
@@ -23,4 +23,3 @@ class StWrap(StTest):
 StWrap()
 
 _StWrap.printName()
-

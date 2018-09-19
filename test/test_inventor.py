@@ -1,26 +1,26 @@
 # -*- coding: utf-8 -*-
 '''
-Created on 2017. 9. 27.
-@author: HyechurnJang
+Created on 2018. 9. 19.
+@author: Hyechurn Jang, <hyjang@cisco.com>
 '''
 
-import jzlib
+from jzlib import Inventory
 
-class Layer1(jzlib.Inventory):
+class Layer1(Inventory):
     
-    def __init__(self): jzlib.Inventory.__init__(self)
+    def __init__(self): Inventory.__init__(self)
     
     @property
     def get(self): return 'Layer1'
     
-    class Layer2A(jzlib.Inventory):
+    class Layer2A(Inventory):
         
-        class Layer3A(jzlib.Inventory):
+        class Layer3A(Inventory):
             
             @property
             def get(self): return (~self).get, (-self).get, 'Layer3A'
             
-        class Layer3B(jzlib.Inventory):
+        class Layer3B(Inventory):
             
             @property
             def get(self): return (--self).get, (-self).get, 'Layer3B'
@@ -28,7 +28,7 @@ class Layer1(jzlib.Inventory):
         @property
         def get(self): return (~self).get, 'Layer2A'
     
-    class Layer2B(jzlib.Inventory):
+    class Layer2B(Inventory):
         
         @property
         def get(self): return (-self).get, 'Layer2B'
@@ -40,7 +40,7 @@ class LayerWrap(Layer1):
 
 l1 = LayerWrap()
 
-print l1.Layer2A.get
-print l1.Layer2B.get
-print l1.Layer2A.Layer3A.get
-print l1.Layer2A.Layer3B.get
+print(l1.Layer2A.get)
+print(l1.Layer2B.get)
+print(l1.Layer2A.Layer3A.get)
+print(l1.Layer2A.Layer3B.get)
