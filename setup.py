@@ -9,7 +9,7 @@ from setuptools import setup
 with open("README.md", "r") as fd: long_description = fd.read()
 setup(
     name='jzlib',
-    version='0.2.0',
+    version='0.2.1',
     license='Apache 2.0',
     author='Hyechurn Jang',
     author_email='hyjang@cisco.com',
