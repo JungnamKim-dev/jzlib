@@ -5,4 +5,4 @@ Created on 2018. 9. 19.
 '''
 
 from .struct import Mortal, Singleton, Inventory, Environment, Cache
-from .function import setGlobals, getPlatform, kill, loadModule, unloadModule
+from .function import setGlobals, getPlatform, kill, loadModule, unloadModule, dumpJson

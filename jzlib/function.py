@@ -6,6 +6,7 @@ Created on 2018. 9. 20.
 
 import os
 import sys
+import json
 import platform
 from .struct import Mortal
 
@@ -34,3 +35,7 @@ def unloadModule(name):
         mod = sys.modules.pop(name)
         for _, obj in mod.__dict__.items(): kill(obj)
         del mod
+
+def dumpJson(obj, indent=None, sort_keys=False):
+    def json_default(val): return str(val)
+    return json.dumps(obj, default=json_default, indent=indent, sort_keys=sort_keys)
